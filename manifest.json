@@ -4,7 +4,7 @@
   "version": "1.1.0",
   "author": "KiraAI Dev",
   "description": "A unified creative console for text, image, and voice, powered by the providers already configured in KiraAI.",
-  "repo": "",
+  "repo": "https://github.com/xxynet/kira-ai-plugin-atelier",
   "icon": "icon.svg",
   "tags": ["studio", "llm", "image", "tts", "stt"],
   "locales": {

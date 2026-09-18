@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atelier</title>
+  <meta name="color-scheme" content="light dark">
+  <script src="/plugin-bridge.js"></script>
+  <script src="./lucide.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Atelier</span>
+      </div>
+
+      <nav class="tabs" id="tabs" role="tablist" aria-label="Capabilities">
+        <button class="tab is-active" type="button" role="tab" data-tab="chat" aria-selected="true">
+          <i data-lucide="message-square"></i><span>Chat</span>
+        </button>
+        <button class="tab" type="button" role="tab" data-tab="image" aria-selected="false">
+          <i data-lucide="image"></i><span>Image</span>
+        </button>
+        <button class="tab" type="button" role="tab" data-tab="voice" aria-selected="false">
+          <i data-lucide="audio-lines"></i><span>Voice</span>
+        </button>
+        <button class="tab" type="button" role="tab" data-tab="listen" aria-selected="false">
+          <i data-lucide="mic"></i><span>Listen</span>
+        </button>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme">
+          <i data-lucide="sun" class="theme-sun"></i>
+          <i data-lucide="moon" class="theme-moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="views">
+
+      <!-- Chat — conversational text generation -->
+      <section class="view is-active" id="view-chat" data-view="chat">
+        <div class="chat-log" id="chat-log" aria-live="polite"></div>
+        <div class="chat-dock">
+          <form class="composer" id="chat-form">
+            <textarea id="chat-input" rows="1" placeholder="Message Atelier…" autocomplete="off"></textarea>
+            <button class="send-btn" type="submit" aria-label="Send">
+              <i data-lucide="arrow-up"></i>
+            </button>
+          </form>
+          <div class="dock-foot">
+            <span class="hint">Enter to send · Shift+Enter for newline</span>
+            <button class="text-btn" id="chat-clear" type="button">
+              <i data-lucide="rotate-ccw"></i><span>Clear</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Image — generation from a prompt -->
+      <section class="view" id="view-image" data-view="image">
+        <div class="view-scroll">
+          <form class="prompt-bar" id="image-form">
+            <input id="image-input" type="text" placeholder="Describe an image…" autocomplete="off">
+            <button class="send-btn" type="submit" aria-label="Generate">
+              <i data-lucide="arrow-up"></i>
+            </button>
+          </form>
+          <div class="gallery" id="gallery"></div>
+        </div>
+      </section>
+
+      <!-- Voice — text to speech -->
+      <section class="view" id="view-voice" data-view="voice">
+        <div class="view-scroll">
+          <form class="block" id="tts-form">
+            <textarea id="tts-input" rows="3" placeholder="Text to speak…" autocomplete="off"></textarea>
+            <div class="block-foot">
+              <span class="hint">Synthesized by the default TTS provider</span>
+              <button class="solid-btn" type="submit">
+                <i data-lucide="audio-lines"></i><span>Synthesize</span>
+              </button>
+            </div>
+          </form>
+          <div class="clips" id="clips"></div>
+        </div>
+      </section>
+
+      <!-- Listen — speech to text -->
+      <section class="view" id="view-listen" data-view="listen">
+        <div class="view-scroll">
+          <div class="block record-block">
+            <button class="record-btn" id="record-btn" type="button" aria-label="Record">
+              <i data-lucide="mic"></i>
+            </button>
+            <div class="record-meta">
+              <span class="record-state" id="record-state">Tap to record</span>
+              <span class="record-timer" id="record-timer">0:00</span>
+            </div>
+            <div class="level" id="level" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="block transcript" id="transcript">
+            <p class="placeholder">Your transcription will appear here.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

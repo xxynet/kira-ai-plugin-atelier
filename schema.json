@@ -1,0 +1,14 @@
+{
+  "system_prompt": {
+    "type": "textarea",
+    "name": "系统提示词",
+    "default": "",
+    "hint": "用于 Atelier 文本对话的可选系统提示词；留空则使用内置默认。",
+    "locales": {
+      "en": {
+        "name": "System prompt",
+        "hint": "Optional system prompt for the Atelier text conversation. Leave empty to use the built-in default."
+      }
+    }
+  }
+}

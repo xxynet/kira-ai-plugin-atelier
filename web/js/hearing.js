@@ -7,6 +7,7 @@
  */
 
 import { transcribe } from './api.js'
+import { getModel } from './models.js'
 import { refreshIcons, formatTime } from './ui.js'
 
 function pickMimeType() {
@@ -175,7 +176,7 @@ export function initHearing() {
         const blob = await stop()
         stateEl.textContent = 'Transcribing'
         const dataUrl = await blobToDataUrl(blob)
-        const res = await transcribe(dataUrl)
+        const res = await transcribe(dataUrl, getModel('stt'))
         renderTranscript((res.text || '').trim())
       } catch (err) {
         renderError(err.message)

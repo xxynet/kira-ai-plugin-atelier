@@ -5,6 +5,7 @@
 
 import { refreshIcons } from './ui.js'
 import { initTheme } from './theme.js'
+import { initModels } from './models.js'
 import { initChat } from './chat.js'
 import { initImage } from './image.js'
 import { initVoice } from './voice.js'
@@ -43,6 +44,7 @@ function init() {
   refreshIcons()
   initTheme(document.getElementById('theme-toggle'))
   initTabs()
+  initModels()
   initChat()
   initImage()
   initVoice()

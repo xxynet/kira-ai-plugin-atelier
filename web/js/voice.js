@@ -1,8 +1,11 @@
 /**
- * Speak — text-to-speech backed by the default TTS provider.
+ * Speak — text-to-speech backed by the default TTS provider, or any TTS model
+ * selected on this page.
  */
 
 import { synthesize } from './api.js'
+import { getModel } from './models.js'
+import { downloadDataUrl, extensionFor, timestamp } from './download.js'
 import { setBusy, refreshIcons } from './ui.js'
 import { createPlayer } from './player.js'
 
@@ -19,8 +22,8 @@ export function initVoice() {
 
     setBusy(submitBtn, true)
     try {
-      const res = await synthesize(text)
-      addClip(text, res.audio)
+      const res = await synthesize(text, getModel('tts'))
+      addClip(text, res.audio, res.mime)
       input.value = ''
     } catch (err) {
       showError(err.message)
@@ -29,7 +32,7 @@ export function initVoice() {
     }
   })
 
-  function addClip(text, dataUrl) {
+  function addClip(text, dataUrl, mime) {
     const clip = document.createElement('div')
     clip.className = 'clip'
 
@@ -37,8 +40,22 @@ export function initVoice() {
     label.className = 'clip-text'
     label.textContent = text
 
+    const bar = document.createElement('div')
+    bar.className = 'clip-bar'
+
     const player = createPlayer(dataUrl)
-    clip.append(label, player.el)
+
+    const filename = `atelier-voice-${timestamp()}.${extensionFor(mime, 'audio', 'mp3')}`
+    const download = document.createElement('button')
+    download.type = 'button'
+    download.className = 'text-btn download-btn'
+    download.title = 'Download audio'
+    download.setAttribute('aria-label', 'Download audio')
+    download.innerHTML = '<i data-lucide="download"></i><span>Download</span>'
+    download.addEventListener('click', () => downloadDataUrl(dataUrl, filename))
+
+    bar.append(player.el, download)
+    clip.append(label, bar)
     clips.prepend(clip)
     refreshIcons()
   }

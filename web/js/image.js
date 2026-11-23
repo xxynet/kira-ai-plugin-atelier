@@ -1,16 +1,12 @@
 /**
- * Render — image generation backed by the default image provider.
+ * Render — image generation backed by the default image provider, or any
+ * image model selected on this page.
  */
 
 import { generateImage } from './api.js'
+import { getModel } from './models.js'
+import { downloadDataUrl, extensionFor, timestamp } from './download.js'
 import { setBusy, refreshIcons } from './ui.js'
-
-const MIME_TO_EXT = {
-  'image/png': 'png',
-  'image/jpeg': 'jpg',
-  'image/webp': 'webp',
-  'image/gif': 'gif',
-}
 
 export function initImage() {
   const form = document.getElementById('image-form')
@@ -30,7 +26,7 @@ export function initImage() {
 
     setBusy(sendBtn, true)
     try {
-      const res = await generateImage(prompt)
+      const res = await generateImage(prompt, getModel('image'))
       loading.remove()
       prependImage(prompt, res.image, res.mime)
       input.value = ''
@@ -57,12 +53,18 @@ export function initImage() {
     promptEl.className = 'gallery-prompt'
     promptEl.textContent = prompt
 
+    const filename = `atelier-image-${timestamp()}.${extensionFor(mime, 'image', 'png')}`
     const save = document.createElement('a')
     save.href = dataUrl
-    save.download = `atelier.${MIME_TO_EXT[mime] || 'png'}`
-    save.title = 'Save image'
-    save.setAttribute('aria-label', 'Save image')
+    save.download = filename
+    save.title = 'Download image'
+    save.setAttribute('aria-label', 'Download image')
     save.innerHTML = '<i data-lucide="download"></i>'
+    // Data URLs are already in memory; skip navigation for a predictable save.
+    save.addEventListener('click', (event) => {
+      event.preventDefault()
+      downloadDataUrl(dataUrl, filename)
+    })
 
     const actions = document.createElement('div')
     actions.className = 'gallery-actions'

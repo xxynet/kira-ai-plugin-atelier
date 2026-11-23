@@ -47,6 +47,13 @@
       <section class="view is-active" id="view-chat" data-view="chat">
         <div class="chat-log" id="chat-log" aria-live="polite"></div>
         <div class="chat-dock">
+          <div class="model-bar">
+            <label class="model-label" for="model-llm">Model</label>
+            <div class="select-wrap">
+              <select id="model-llm" data-model-for="llm" aria-label="Chat model"></select>
+              <i data-lucide="chevron-down" class="select-chevron"></i>
+            </div>
+          </div>
           <form class="composer" id="chat-form">
             <textarea id="chat-input" rows="1" placeholder="Message Atelier…" autocomplete="off"></textarea>
             <button class="send-btn" type="submit" aria-label="Send">
@@ -65,6 +72,13 @@
       <!-- Image — generation from a prompt -->
       <section class="view" id="view-image" data-view="image">
         <div class="view-scroll">
+          <div class="model-bar">
+            <label class="model-label" for="model-image">Model</label>
+            <div class="select-wrap">
+              <select id="model-image" data-model-for="image" aria-label="Image model"></select>
+              <i data-lucide="chevron-down" class="select-chevron"></i>
+            </div>
+          </div>
           <form class="prompt-bar" id="image-form">
             <input id="image-input" type="text" placeholder="Describe an image…" autocomplete="off">
             <button class="send-btn" type="submit" aria-label="Generate">
@@ -78,10 +92,17 @@
       <!-- Voice — text to speech -->
       <section class="view" id="view-voice" data-view="voice">
         <div class="view-scroll">
+          <div class="model-bar">
+            <label class="model-label" for="model-tts">Model</label>
+            <div class="select-wrap">
+              <select id="model-tts" data-model-for="tts" aria-label="Voice model"></select>
+              <i data-lucide="chevron-down" class="select-chevron"></i>
+            </div>
+          </div>
           <form class="block" id="tts-form">
             <textarea id="tts-input" rows="3" placeholder="Text to speak…" autocomplete="off"></textarea>
             <div class="block-foot">
-              <span class="hint">Synthesized by the default TTS provider</span>
+              <span class="hint">Synthesized by the selected TTS model</span>
               <button class="solid-btn" type="submit">
                 <i data-lucide="audio-lines"></i><span>Synthesize</span>
               </button>
@@ -94,6 +115,13 @@
       <!-- Listen — speech to text -->
       <section class="view" id="view-listen" data-view="listen">
         <div class="view-scroll">
+          <div class="model-bar">
+            <label class="model-label" for="model-stt">Model</label>
+            <div class="select-wrap">
+              <select id="model-stt" data-model-for="stt" aria-label="Speech recognition model"></select>
+              <i data-lucide="chevron-down" class="select-chevron"></i>
+            </div>
+          </div>
           <div class="block record-block">
             <button class="record-btn" id="record-btn" type="button" aria-label="Record">
               <i data-lucide="mic"></i>

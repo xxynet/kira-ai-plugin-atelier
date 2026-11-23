@@ -1,7 +1,7 @@
 {
   "display_name": "Atelier",
   "plugin_id": "kira-ai-plugin-atelier",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "KiraAI Dev",
   "description": "A unified creative console for text, image, and voice, powered by the providers already configured in KiraAI, with per-capability model switching and download support.",
   "repo": "https://github.com/xxynet/kira-ai-plugin-atelier",

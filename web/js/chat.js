@@ -3,6 +3,7 @@
  */
 
 import { chat as chatApi } from './api.js'
+import { getModel } from './models.js'
 import { setBusy } from './ui.js'
 
 export function initChat() {
@@ -64,7 +65,7 @@ export function initChat() {
 
     setBusy(sendBtn, true)
     try {
-      const res = await chatApi(history)
+      const res = await chatApi(history, getModel('llm'))
       const reply = (res.text || '').trim()
       addMessage('assistant', reply, { reveal: true })
       history.push({ role: 'assistant', content: reply })

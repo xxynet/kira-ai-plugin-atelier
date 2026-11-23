@@ -1,20 +1,20 @@
 {
   "display_name": "Atelier",
   "plugin_id": "kira-ai-plugin-atelier",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "KiraAI Dev",
-  "description": "A unified creative console for text, image, and voice, powered by the providers already configured in KiraAI.",
+  "description": "A unified creative console for text, image, and voice, powered by the providers already configured in KiraAI, with per-capability model switching and download support.",
   "repo": "https://github.com/xxynet/kira-ai-plugin-atelier",
   "icon": "icon.svg",
   "tags": ["studio", "llm", "image", "tts", "stt"],
   "locales": {
     "zh": {
       "display_name": "创作工坊",
-      "description": "一个统一使用已配置提供商的创作工作台，覆盖文本、图像与语音能力。"
+      "description": "一个统一使用已配置提供商的创作工作台，覆盖文本、图像与语音能力，可逐项切换模型并下载生成的图片与音频。"
     },
     "en": {
       "display_name": "Atelier",
-      "description": "A unified creative console for text, image, and voice, powered by the providers already configured in KiraAI."
+      "description": "A unified creative console for text, image, and voice, powered by the providers already configured in KiraAI, with per-capability model switching and download support."
     }
   }
 }
